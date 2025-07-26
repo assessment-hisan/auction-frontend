@@ -10,7 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-pdf/render": "^4.3.0",
+    "audit": "^0.0.6",
     "axios": "^1.11.0",
+    "fix": "^0.0.6",
+    "html2pdf": "^0.0.11",
+    "jspdf": "^3.0.1",
+    "jspdf-autotable": "^5.0.2",
     "lucide-react": "^0.263.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

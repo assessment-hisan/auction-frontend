@@ -15,7 +15,7 @@ const StudentManagementPage = () => {
   const students = useStore((state) => state.students)
 
   // const students = useStore((state) => state.students)
- const [activeTab, setActiveTab] = useState("uncalled")
+  const [activeTab, setActiveTab] = useState("uncalled")
   const [showAddModal, setShowAddModal] = useState(false)
   const [showImportModal, setShowImportModal] = useState(false)
   const [showAssignPoolModal, setShowAssignPoolModal] = useState(false)
@@ -23,8 +23,8 @@ const StudentManagementPage = () => {
   const [selectedStudent, setSelectedStudent] = useState(null)
   const [filters, setFilters] = useState({ section: "all", pool: "all" })
 
- const uncalledStudents = students.filter((s) => !s.teamId)
-const calledStudents = students.filter((s) => s.teamId)
+  const uncalledStudents = students.filter((s) => !s.teamId)
+  const calledStudents = students.filter((s) => s.teamId)
 
   // Get unique sections and pools for filters
   const sections = [...new Set(students.map((s) => s.section))]
@@ -46,12 +46,12 @@ const calledStudents = students.filter((s) => s.teamId)
     setSelectedStudent({ ...student, action })
     setShowAuctionModal(true)
   }
- useEffect(() => {
-  console.log("from managment page" ,students)
-  console.log("Students in store:", students)
-console.log("Uncalled:", uncalledStudents)
-console.log("Called:", calledStudents)
-}, [])
+  useEffect(() => {
+    console.log("from managment page", students)
+    console.log("Students in store:", students)
+    console.log("Uncalled:", uncalledStudents)
+    console.log("Called:", calledStudents)
+  }, [])
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -82,11 +82,10 @@ console.log("Called:", calledStudents)
         <nav className="-mb-px flex space-x-8">
           <button
             onClick={() => setActiveTab("uncalled")}
-            className={`py-2 px-1 border-b-2 font-medium text-sm ${
-              activeTab === "uncalled"
+            className={`py-2 px-1 border-b-2 font-medium text-sm ${activeTab === "uncalled"
                 ? "border-blue-500 text-blue-600"
                 : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-            }`}
+              }`}
           >
             <div className="flex items-center space-x-2">
               <Users className="h-4 w-4" />
@@ -95,11 +94,10 @@ console.log("Called:", calledStudents)
           </button>
           <button
             onClick={() => setActiveTab("called")}
-            className={`py-2 px-1 border-b-2 font-medium text-sm ${
-              activeTab === "called"
+            className={`py-2 px-1 border-b-2 font-medium text-sm ${activeTab === "called"
                 ? "border-blue-500 text-blue-600"
                 : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300"
-            }`}
+              }`}
           >
             <div className="flex items-center space-x-2">
               <UserCheck className="h-4 w-4" />
@@ -149,10 +147,43 @@ console.log("Called:", calledStudents)
       </div>
 
       {/* Students Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {filteredStudents.map((student) => (
           <StudentCard key={student._id} student={student} onAction={handleStudentAction} />
         ))}
+      </div> */}
+
+      {/* table for students */}
+      <div className="w-full rounded-xl">
+        <table className="w-full rounded-xl">
+          <thead className="bg-black bg-opacity-20">
+            <tr>
+              <th className="px-4 py-2 text-left text-sm font-semibold">si no.</th>
+              <th className="px-4 py-2 text-left text-sm font-semibold">Admission No.</th>
+              <th className="px-4 py-2 text-left text-sm font-semibold">Student Name</th>
+              <th className="px-4 py-2 text-left text-sm font-semibold">Class</th>
+              <th className="px-4 py-2 text-left text-sm font-semibold">pool</th>
+              <th className="px-4 py-2 text-left text-sm font-semibold">Team</th>
+            </tr>
+          </thead>
+          <tbody>
+                    {filteredStudents.map((student, index) => (
+                      <tr
+                        key={student._id}
+                        className={`${
+                          index % 2 === 0 ? " bg-opacity-10" : "bg-black bg-opacity-20"
+                        } hover:bg-black hover:bg-opacity-30 transition-colors`}
+                      >
+                        <td className="px-4 py-2 text-sm font-medium">{index + 1}</td>
+                        <td className="px-4 py-2 text-sm font-medium">{student.admissionNumber}</td>
+                        <td className="px-4 py-2 text-sm">{student.name}</td>
+                        <td className="px-4 py-2 text-sm">{student.class}</td>
+                        <td className="px-4 py-2 text-sm">{student.pool || "not assinged"}</td>
+                        <td className="px-4 py-2 text-sm">{student.teamId?.name || "not assinged"}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+        </table>
       </div>
 
       {filteredStudents.length === 0 && (
