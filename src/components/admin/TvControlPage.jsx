@@ -5,10 +5,11 @@ import { useStore } from "../../store/useStore"
 import { Monitor, Settings, MessageSquare, Clock, Users, Eye } from "lucide-react"
 
 const TvControlPage = () => {
-  const { tv1Settings, tv2Settings, teams, loading, updateTv1Settings, updateTv2Settings } = useStore()
+  const { tv1Settings, tv2Settings, teams, loading, updateTv1Settings } = useStore()
   const [activeTab, setActiveTab] = useState("tv1")
 
   const handleTv1SettingsUpdate = (field, value) => {
+    
     updateTv1Settings({
       ...tv1Settings,
       [field]: value,
@@ -22,7 +23,7 @@ const TvControlPage = () => {
     })
   }
 
-  const sections = ["Bidayay", "A", "B", "C"]
+  const sections = ["bidayah", "ula", "thaniya", "thanawiyyah", "aliyah"]
   const pools = ["Pool 1", "Pool 2", "Pool 3", "Pool 4", "Pool 5", "Pool 6", "Pool 7", "Pool 8"]
 
   if (loading) {

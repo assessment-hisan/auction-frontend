@@ -17,8 +17,8 @@ console.log("addStudent function:", addStudent)
   })
   const [loading, setLoading] = useState(false)
 
-  const sections = ["Bidayay", "A", "B", "C"]
-  const pools = ["Pool 1", "Pool 2", "Pool 3", "Pool 4", "Pool 5", "Pool 6", "Pool 7", "Pool 8"]
+  const sections = ["bidayah", "ula", "thaniya", "thanawiyyah", "aliyah"]
+  const pools = ["Pool 1", "Pool 2", "Pool 3", "Pool 4", "Pool 5", "Pool 6", "Pool 7", "Pool 8", "pool 9"]
 
   const handleSubmit = async (e) => {
     e.preventDefault()

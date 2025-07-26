@@ -1,11 +1,12 @@
 
 
 import { useState } from "react"
-import { Users, UserCheck, Monitor, Settings, Printer } from "lucide-react"
+import { Users, UserCheck, Monitor, Settings, Printer, Phone } from "lucide-react"
 import StudentManagementPage from "./admin/StudentManagementPage"
 import TeamManagementPage from "./admin/TeamManagementPage"
 import TvControlPage from "./admin/TvControlPage"
-import Print from "./admin/Print"
+import PrintStudentPoolTable from "./admin/Print"
+import CallStudents from "./admin/CallStudents"
 const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("students")
 
@@ -13,7 +14,8 @@ const AdminDashboard = () => {
     { id: "students", label: "Student Management", icon: Users, component: StudentManagementPage },
     { id: "teams", label: "Team Management", icon: UserCheck, component: TeamManagementPage },
     { id: "tv-control", label: "TV Screens Control", icon: Monitor, component: TvControlPage },
-    { id: "print", label: "print", icon: Printer, component: Print },
+    { id: "print", label: "print", icon: Printer, component: PrintStudentPoolTable },
+    { id: "call", label: "Call Student", icon: Phone, component: CallStudents },
   ]
 
   const ActiveComponent = tabs.find((tab) => tab.id === activeTab)?.component
